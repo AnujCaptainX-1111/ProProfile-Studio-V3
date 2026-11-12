@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProProfile Studio V3 - Enterprise AI LinkedIn Profile Generator</title>
+  <meta name="description" content="Enterprise-grade AI LinkedIn Profile Generator Studio V3 to create high-impact headlines, summaries, experience, education, skills, and project highlights with live photo upload and direct editing.">
+  
+  <!-- Modern Google Fonts: Plus Jakarta Sans & Inter for sleek AI SaaS typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="saas-app">
+
+  <!-- Ambient Background Glow Gradients for futuristic SaaS feel -->
+  <div class="ambient-glow glow-top-left" aria-hidden="true"></div>
+  <div class="ambient-glow glow-top-right" aria-hidden="true"></div>
+  <div class="ambient-glow glow-bottom-center" aria-hidden="true"></div>
+
+  <!-- Mobile Sidebar Backdrop Overlay -->
+  <div id="sidebar-overlay" class="sidebar-overlay" aria-hidden="true"></div>
+
+  <!-- ==========================================================================
+       APP SHELL: SIDEBAR NAVIGATION
+       ========================================================================== -->
+  <aside id="app-sidebar" class="app-sidebar" aria-label="Main Navigation">
+    <div class="sidebar-header">
+      <a href="#" class="sidebar-brand" id="brand-home-link">
+        <div class="brand-logo-icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            <rect x="2" y="14" width="20" height="8" rx="2"></rect>
+          </svg>
+          <span class="logo-sparkle">✨</span>
+        </div>
+        <div class="brand-text-group">
+          <div class="brand-title">ProProfile <span class="gradient-text">Studio</span></div>
+          <span class="brand-badge">Studio V3</span>
+        </div>
+      </a>
+      <button id="sidebar-close-btn" class="sidebar-close-btn" aria-label="Close Sidebar">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Navigation Menu Items -->
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">WORKSPACE</div>
+      <ul class="nav-list">
+        <li>
+          <button type="button" class="nav-item" data-view="dashboard" id="nav-dashboard">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <span>Dashboard</span>
+            <span class="nav-badge">Overview</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="nav-item active" data-view="generator" id="nav-generator">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path>
+              <path d="M5 3v4"></path>
+              <path d="M19 17v4"></path>
+              <path d="M3 5h4"></path>
+              <path d="M17 19h4"></path>
+            </svg>
+            <span>Profile Generator</span>
+            <span class="nav-pill-pulse">Live</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="nav-item" data-view="profiles" id="nav-profiles">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span>My Profiles</span>
+            <span class="nav-count" id="saved-profiles-count">0</span>
+          </button>
+        </li>
+      </ul>
+
+      <div class="nav-section-label">SYSTEM & PREFERENCES</div>
+      <ul class="nav-list">
+        <li>
+          <button type="button" class="nav-item" data-view="settings" id="nav-settings">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <span>Settings</span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Sidebar Footer / User Plan Status -->
+    <div class="sidebar-footer">
+      <div class="plan-card glass-panel">
+        <div class="plan-header">
+          <div class="plan-badge">PRO SUITE</div>
+          <span class="plan-version">AI Unlimited</span>
+        </div>
+        <p class="plan-desc">Connected to high-speed AI inference engine with zero rate latency.</p>
+        <div class="plan-progress">
+          <div class="progress-bar-fill"></div>
+        </div>
+        <div class="plan-metrics">
+          <span>AI Health: Optimal</span>
+          <span class="metric-highlight">100% Free</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       MAIN VIEW WRAPPER
+       ========================================================================== -->
+  <div class="app-main-wrapper">
+
+    <!-- ========================================================================
+         PREMIUM TOP NAVIGATION BAR
+         ======================================================================== -->
+    <header class="app-topbar glass-nav">
+      <div class="topbar-left">
+        <!-- Mobile Hamburger Toggle -->
+        <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle navigation menu">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+
+        <!-- Dynamic Breadcrumb / Page Title -->
+        <div class="breadcrumbs">
+          <span class="crumb-root">Workspace</span>
+          <span class="crumb-separator">/</span>
+          <span class="crumb-current" id="current-page-crumb">Profile Generator</span>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <!-- AI Backend Status Pill (Preserved ID) -->
+        <div id="ai-status-pill" class="status-pill status-checking" title="Connecting to backend server...">
+          <span class="status-dot"></span>
+          <span id="ai-status-text">Checking AI Backend...</span>
+        </div>
+
+        <!-- Quick Action Buttons in Topbar (Preserved IDs) -->
+        <button id="btn-load-sample" type="button" class="btn btn-secondary btn-icon-text" title="Populate form with realistic sample data">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          <span class="btn-text-responsive">Load Sample</span>
+        </button>
+
+        <button id="btn-clear" type="button" class="btn btn-outline btn-icon-text" title="Clear all fields and reset">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+          </svg>
+          <span class="btn-text-responsive">Clear</span>
+        </button>
+
+        <!-- Dark / Light Mode Toggle Button -->
+        <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle Dark and Light Mode" title="Toggle Dark/Light Mode">
+          <span class="icon-sun">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="icon-moon">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+        </button>
+
+        <!-- Pro User Pill -->
+        <div class="user-profile-badge">
+          <div class="avatar-ring">
+            <span class="avatar-letter">AI</span>
+          </div>
+          <span class="user-tier-label">PRO TIER</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ========================================================================
+         VIEW 1: PROFILE GENERATOR (Default View with Form & Preview)
+         ======================================================================== -->
+    <main id="view-generator" class="view-panel active-view">
+      <div class="view-header-banner">
+        <div>
+          <h1 class="view-heading">AI Profile <span class="gradient-text">Studio</span></h1>
+          <p class="view-subheading">Craft recruiter-optimized LinkedIn headlines, summaries, and career achievements powered by state-of-the-art AI.</p>
+        </div>
+        <div class="banner-stat-chips">
+          <div class="stat-chip">
+            <span class="chip-dot"></span>
+            <span>LinkedIn 2026 Ready</span>
+          </div>
+          <div class="stat-chip">
+            <span class="chip-sparkle">⚡</span>
+            <span>Zero Hallucinations</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Premium studio metrics strip -->
+      <div class="studio-metrics" aria-label="Profile generator overview">
+        <div class="studio-metric"><span class="metric-icon metric-blue">◎</span><div><small>PROFILE QUALITY</small><strong>Recruiter-ready</strong><em>Built around your real details</em></div></div>
+        <div class="studio-metric"><span class="metric-icon metric-violet">✦</span><div><small>HEADLINE OPTIONS</small><strong>3 Formulas</strong><em>Direct · SEO · Value</em></div></div>
+        <div class="studio-metric"><span class="metric-icon metric-green">▤</span><div><small>PROFILE SECTIONS</small><strong>6 Content Blocks</strong><em>Headline, About, Experience, Education, Skills, Projects</em></div></div>
+        <div class="studio-metric"><span class="metric-icon metric-amber">◷</span><div><small>GENERATION MODE</small><strong>AI + Offline</strong><em>Automatic template fallback</em></div></div>
+      </div>
+
+      <div class="generator-split-grid">
+
+        <!-- ====================================================================
+             LEFT COLUMN: Profile Input Form
+             ==================================================================== -->
+        <section class="form-column" aria-labelledby="form-heading">
+          <div class="card form-card glass-card">
+            
+            <div class="card-header">
+              <div class="header-icon-badge">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+              </div>
+              <div>
+                <h2 id="form-heading" class="card-title">Candidate Profile Data</h2>
+                <p class="section-desc">Provide your authentic background. Our AI polishes and elevates your genuine career narrative without fabricating false claims.</p>
+              </div>
+            </div>
+
+            <form id="profile-form" novalidate>
+              
+              <!-- STEP 1: Basic Identity & Target Role -->
+              <div class="form-section-block">
+                <div class="form-section-header">
+                  <span class="section-step-num">01</span>
+                  <h3>Primary Target & Identity</h3>
+                </div>
+
+                <!-- 0. Profile Photo Upload (V3) -->
+                <div class="form-group photo-upload-group" id="group-photo">
+                  <label for="input-profile-photo">
+                    <span>Profile Photo</span>
+                    <span class="optional-tag">(Optional)</span>
+                  </label>
+                  <div class="photo-upload-container">
+                    <div class="photo-preview-box" id="form-photo-preview-box" title="Click to select or change photo">
+                      <div class="photo-avatar-placeholder" id="photo-avatar-placeholder">
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8">
+                          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                          <circle cx="12" cy="13" r="4"></circle>
+                        </svg>
+                      </div>
+                      <img id="form-photo-img" class="photo-preview-image hidden" alt="Uploaded Profile Photo">
+                    </div>
+                    <div class="photo-upload-controls">
+                      <input type="file" id="input-profile-photo" accept="image/png, image/jpeg, image/webp, image/gif" class="hidden-file-input" aria-label="Upload Profile Photo">
+                      <div class="photo-btn-row">
+                        <button type="button" class="btn btn-secondary btn-mini" id="btn-upload-photo">
+                          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                          </svg>
+                          <span id="btn-upload-photo-text">Upload Photo</span>
+                        </button>
+                        <button type="button" class="btn btn-outline btn-mini hidden" id="btn-change-photo">
+                          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                          </svg>
+                          <span>Change</span>
+                        </button>
+                        <button type="button" class="btn btn-outline btn-mini btn-danger-subtle hidden" id="btn-remove-photo" title="Remove custom photo">
+                          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                          </svg>
+                          <span>Remove</span>
+                        </button>
+                      </div>
+                      <span class="help-text">Upload a headshot (JPG, PNG, WebP). Live preview updates instantly in the LinkedIn card.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 1. Full Name (Required) -->
+                <div class="form-group" id="group-fullname">
+                  <label for="fullname">
+                    <span>Full Name</span>
+                    <span class="required-star">*</span>
+                  </label>
+                  <div class="input-wrapper">
+                    <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <input 
+                      type="text" 
+                      id="fullname" 
+                      name="fullname" 
+                      placeholder="e.g. Sarah Jenkins" 
+                      autocomplete="name"
+                      required>
+                  </div>
+                  <span class="error-message" id="error-fullname">Please enter your full name.</span>
+                </div>
+
+                <!-- 2. Current Role or Career Goal (Required) -->
+                <div class="form-group" id="group-role">
+                  <label for="role">
+                    <span>Target Role or Current Title</span>
+                    <span class="required-star">*</span>
+                  </label>
+                  <div class="input-wrapper">
+                    <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                    </svg>
+                    <input 
+                      type="text" 
+                      id="role" 
+                      name="role" 
+                      placeholder="e.g. Senior Frontend Engineer or Cloud Architect" 
+                      required>
+                  </div>
+                  <span class="help-text">Guides your primary headline, search keyword density, and summary hook.</span>
+                  <span class="error-message" id="error-role">Please enter your current role or target career goal.</span>
+                </div>
+
+                <!-- Industry/Specialty Field (Optional) -->
+                <div class="form-group" id="group-industry">
+                  <label for="industry">
+                    <span>Industry Domain / Niche</span>
+                    <span class="optional-tag">(Optional)</span>
+                  </label>
+                  <div class="input-wrapper">
+                    <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                      <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                      <polyline points="2 17 12 22 22 17"></polyline>
+                      <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                    <input 
+                      type="text" 
+                      id="industry" 
+                      name="industry" 
+                      placeholder="e.g. FinTech, B2B SaaS, HealthTech, E-commerce">
+                  </div>
+                </div>
+              </div>
+
+              <!-- STEP 2: Academic & Skills -->
+              <div class="form-section-block">
+                <div class="form-section-header">
+                  <span class="section-step-num">02</span>
+                  <h3>Foundations & Competencies</h3>
+                </div>
+
+                <!-- 3. Education (Required) -->
+                <div class="form-group" id="group-education">
+                  <label for="education">
+                    <span>Education & Certifications Foundation</span>
+                    <span class="required-star">*</span>
+                  </label>
+                  <textarea 
+                    id="education" 
+                    name="education" 
+                    rows="2" 
+                    placeholder="e.g. B.S. in Computer Science | State University (2020 - 2024)"
+                    required></textarea>
+                  <span class="help-text">Include degrees, college/university, honors, or graduation timelines.</span>
+                  <span class="error-message" id="error-education">Please provide your educational background.</span>
+                </div>
+
+                <!-- 4. Skills (Required) -->
+                <div class="form-group" id="group-skills">
+                  <label for="skills">
+                    <span>Core Technical & Professional Skills</span>
+                    <span class="required-star">*</span>
+                  </label>
+                  <textarea 
+                    id="skills" 
+                    name="skills" 
+                    rows="3" 
+                    placeholder="e.g. React.js, TypeScript, Node.js, GraphQL, Docker, Tailwind CSS, System Architecture, UI/UX"
+                    required></textarea>
+                  <span class="help-text">Separate skills with commas. The AI will weave these into high-traffic SEO keywords for LinkedIn recruiter searches.</span>
+                  <span class="error-message" id="error-skills">Please enter at least 2 or 3 of your primary skills.</span>
+                </div>
+              </div>
+
+              <!-- STEP 3: Career History & Projects -->
+              <div class="form-section-block">
+                <div class="form-section-header">
+                  <span class="section-step-num">03</span>
+                  <h3>Track Record & Deliverables</h3>
+                </div>
+
+                <!-- 5. Work Experience (Optional / Recommended) -->
+                <div class="form-group" id="group-experience">
+                  <label for="experience">
+                    <span>Work Experience</span>
+                    <span class="optional-tag">(Recommended)</span>
+                  </label>
+                  <textarea 
+                    id="experience" 
+                    name="experience" 
+                    rows="4" 
+                    placeholder="Company Name - Role Title (Year - Year)
+• Key duty, responsibility, or measurable achievement
+• Team contribution, tool, or metric improved"></textarea>
+                  <span class="help-text">List positions separated by blank lines. The AI will polish them into high-converting STAR bullet points.</span>
+                </div>
+
+                <!-- 6. Projects (Optional / Recommended) -->
+                <div class="form-group" id="group-projects">
+                  <label for="projects">
+                    <span>Projects & Portfolio</span>
+                    <span class="optional-tag">(Recommended)</span>
+                  </label>
+                  <textarea 
+                    id="projects" 
+                    name="projects" 
+                    rows="4" 
+                    placeholder="Project Name | Technologies Used
+• What does the project achieve?
+• What problem did you solve and what was the impact?"></textarea>
+                  <span class="help-text">Highlight independent, open-source, or client projects you are proud of.</span>
+                </div>
+
+                <!-- 7. Achievements (Optional) -->
+                <div class="form-group" id="group-achievements">
+                  <label for="achievements">
+                    <span>Honors, Awards & Key Milestones</span>
+                    <span class="optional-tag">(Optional)</span>
+                  </label>
+                  <textarea 
+                    id="achievements" 
+                    name="achievements" 
+                    rows="3" 
+                    placeholder="e.g. AWS Certified Solutions Architect (2024)
+Dean's Honor List for 4 consecutive semesters
+Winner of Regional AI Hackathon"></textarea>
+                </div>
+              </div>
+
+              <!-- STEP 4: Style & Generation Engine -->
+              <div class="form-section-block">
+                <div class="form-section-header">
+                  <span class="section-step-num">04</span>
+                  <h3>Tone & AI Generation Mode</h3>
+                </div>
+
+                <!-- Tone Selector -->
+                <div class="form-group" id="group-tone">
+                  <label for="tone-select">
+                    <span>Voice & Executive Persona</span>
+                  </label>
+                  <div class="select-wrapper">
+                    <select id="tone-select" name="tone">
+                      <option value="modern" selected>Modern & Value-Driven (Recommended)</option>
+                      <option value="direct">Concise, Direct & Executive</option>
+                      <option value="story">Storyteller & Career Growth</option>
+                    </select>
+                    <svg class="select-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Generation Mode Selector (Preserved IDs) -->
+                <div class="form-group" id="group-engine">
+                  <label class="engine-section-title">Inference Engine</label>
+                  <div class="engine-selector-grid">
+                    
+                    <label class="engine-card glass-card" for="engine-ai">
+                      <input type="radio" name="engine" id="engine-ai" value="ai" checked>
+                      <div class="engine-content">
+                        <div class="engine-heading">
+                          <span class="engine-icon">✨</span>
+                          <span class="engine-name">AI Enhanced</span>
+                          <span class="engine-tag" id="engine-ai-tag">Auto-Detect</span>
+                        </div>
+                        <p class="engine-desc">Smart generative narrative via secure backend (Google Gemini / OpenAI). Gracefully falls back if offline.</p>
+                      </div>
+                    </label>
+
+                    <label class="engine-card glass-card" for="engine-template">
+                      <input type="radio" name="engine" id="engine-template" value="template">
+                      <div class="engine-content">
+                        <div class="engine-heading">
+                          <span class="engine-icon">⚡</span>
+                          <span class="engine-name">Smart Template</span>
+                          <span class="engine-tag tag-free">100% Free & Offline</span>
+                        </div>
+                        <p class="engine-desc">Instant deterministic template builder. Runs fully local in browser with zero setup or keys needed.</p>
+                      </div>
+                    </label>
+
+                  </div>
+                </div>
+              </div>
+
+              <!-- Form Action Buttons -->
+              <div class="form-actions">
+                <button id="btn-generate" type="submit" class="btn btn-primary btn-large btn-glow">
+                  <span class="btn-spinner hidden" id="generate-spinner" aria-hidden="true"></span>
+                  <svg id="generate-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                  </svg>
+                  <span id="generate-btn-text">Generate LinkedIn Profile</span>
+                </button>
+              </div>
+
+            </form>
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             RIGHT COLUMN: Generated Profile Preview & Interactive Cards
+             ==================================================================== -->
+        <section class="preview-column" aria-labelledby="preview-heading">
+          
+          <!-- Preview Header with Sticky Controls -->
+          <div class="preview-sticky-header glass-card">
+            <div>
+              <div class="preview-title-row">
+                <h2 id="preview-heading" class="preview-heading">Generated Profile</h2>
+                <span id="source-badge" class="badge badge-source hidden">✨ AI Powered</span>
+              </div>
+              <p class="section-desc">Review your optimized LinkedIn assets. Copy individual blocks or download your full profile in one click.</p>
+            </div>
+            
+            <div class="preview-actions">
+              <button id="btn-save-profile" type="button" class="btn btn-secondary btn-icon-text" title="Save this profile snapshot to My Profiles">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                  <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                  <polyline points="7 3 7 8 15 8"></polyline>
+                </svg>
+                <span>Save Profile</span>
+              </button>
+
+              <div class="download-dropdown-wrap">
+                <button id="btn-download-profile" type="button" class="btn btn-secondary btn-icon-text" title="Download formatted profile">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  <span>Download</span>
+                  <svg class="dropdown-chevron" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div id="download-dropdown-menu" class="download-dropdown-menu glass-panel hidden">
+                  <button type="button" class="download-menu-item" id="btn-download-md">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <polyline points="14 2 14 8 20 8"></polyline>
+                    </svg>
+                    <div>
+                      <strong>Markdown (.md)</strong>
+                      <small>Formatted document ready for GitHub or notes</small>
+                    </div>
+                  </button>
+                  <button type="button" class="download-menu-item" id="btn-download-txt">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="21" y1="10" x2="3" y2="10"></line>
+                      <line x1="21" y1="6" x2="3" y2="6"></line>
+                      <line x1="21" y1="14" x2="3" y2="14"></line>
+                      <line x1="21" y1="18" x2="3" y2="18"></line>
+                    </svg>
+                    <div>
+                      <strong>Plain Text (.txt)</strong>
+                      <small>Clean formatted text for direct pasting</small>
+                    </div>
+                  </button>
+                  <button type="button" class="download-menu-item" id="btn-download-pdf">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                      <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                      <rect x="6" y="14" width="12" height="8"></rect>
+                    </svg>
+                    <div>
+                      <strong>Print / Save as PDF</strong>
+                      <small>Opens browser print dialog with print styling</small>
+                    </div>
+                  </button>
+                </div>
+              </div>
+
+              <button id="btn-regenerate" type="button" class="btn btn-outline btn-icon-text" title="Re-run the generator with alternative phrasing">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <polyline points="23 4 23 10 17 10"></polyline>
+                  <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                </svg>
+                <span>Regenerate</span>
+              </button>
+              
+              <button id="btn-copy-all" type="button" class="btn btn-primary btn-icon-text" title="Copy all sections to your clipboard at once">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span>Copy Full Profile</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Loading Animation Skeleton (Shown while AI generates) -->
+          <div id="preview-loading-skeleton" class="loading-skeleton-container glass-card hidden">
+            <div class="skeleton-header">
+              <div class="skeleton-icon-pulse">✨</div>
+              <div class="skeleton-title-wrap">
+                <div class="skeleton-line shimmer-bar w-40"></div>
+                <div class="skeleton-line shimmer-bar w-70"></div>
+              </div>
+            </div>
+            <div class="skeleton-body">
+              <div class="skeleton-line shimmer-bar w-90"></div>
+              <div class="skeleton-line shimmer-bar w-80"></div>
+              <div class="skeleton-line shimmer-bar w-60"></div>
+              <div class="skeleton-card-pulse shimmer-block"></div>
+            </div>
+            <p class="skeleton-status-label">Synthesizing keywords & crafting professional voice...</p>
+          </div>
+
+          <!-- Placeholder Empty State (Preserved ID) -->
+          <div id="preview-empty-state" class="empty-state glass-card">
+            <div class="empty-state-illustration">
+              <div class="empty-glow-ring"></div>
+              <svg viewBox="0 0 24 24" width="60" height="60" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </div>
+            <div class="empty-state-content">
+              <h3>Your AI Profile Appears Here</h3>
+              <p>Complete the candidate details on the left, or test drive instantly with our pre-configured software engineering sample.</p>
+              <button type="button" class="btn btn-secondary btn-glow" onclick="document.getElementById('btn-load-sample').click();">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span>Try With Sample Data</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Generated Results Wrapper (Preserved ID) -->
+          <div id="preview-results" class="preview-results hidden">
+
+            <!-- Live LinkedIn-style profile preview -->
+            <article class="linkedin-preview-card glass-card" id="linkedin-profile-preview">
+              <div class="linkedin-cover"><span class="cover-mark">in</span></div>
+              <div class="linkedin-identity">
+                <div class="linkedin-avatar" id="preview-avatar" title="Profile picture preview">
+                  <span id="preview-avatar-initials">AI</span>
+                  <img id="preview-avatar-img" class="linkedin-avatar-image hidden" alt="LinkedIn Avatar">
+                </div>
+                <div class="linkedin-identity-main">
+                  <h3 id="preview-name">Your Name <span class="verified-mark">✓</span></h3>
+                  <p id="preview-role">Your professional role</p>
+                  <small id="preview-location">Add your location in your profile details</small>
+                </div>
+                <div class="linkedin-company"><span>▣</span><strong id="preview-industry">Professional Profile</strong></div>
+              </div>
+              <div class="linkedin-preview-actions"><span class="linkedin-open-pill">Open to</span><span class="linkedin-outline-pill">Add profile section</span><span class="linkedin-muted-pill">More</span></div>
+              <div class="linkedin-live-status"><span><i></i> Profile content live synced</span><small>Directly edit any block below · Preview updates instantly</small></div>
+            </article>
+
+            <!-- 1. Headline Section Card -->
+            <article class="card result-card glass-card" id="card-headline">
+              <div class="result-card-header">
+                <div class="result-title-group">
+                  <span class="badge badge-accent">Section 1</span>
+                  <h3>LinkedIn Headline</h3>
+                </div>
+                <div class="card-header-actions">
+                  <span class="editable-indicator" title="Click directly in the box to edit">✏️ Editable</span>
+                  <span class="char-counter" id="headline-char-count">0 / 220 chars</span>
+                  <button type="button" class="btn btn-copy" data-target="output-headline" title="Copy headline to clipboard">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span>Copy Headline</span>
+                  </button>
+                </div>
+              </div>
+              <p class="card-instruction">LinkedIn allows up to 220 characters. Click directly inside to edit your primary headline, or choose an alternative variation below:</p>
+              
+              <!-- Primary Headline Output (Editable) -->
+              <div class="output-box headline-primary" id="output-headline" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="true"></div>
+              
+              <!-- Headline Variations Pills -->
+              <div class="headline-variations">
+                <div class="variations-header">
+                  <span class="variations-title">Alternative Headline Variations:</span>
+                  <span class="variations-sub">Choose what matches your personal brand</span>
+                </div>
+
+                <div class="variation-item glass-panel">
+                  <div class="variation-meta">
+                    <span class="variation-label">Skill-Focused:</span>
+                    <p id="output-headline-variant-1" class="variation-text" contenteditable="true" spellcheck="false"></p>
+                  </div>
+                  <button type="button" class="btn btn-mini btn-copy" data-target="output-headline-variant-1">Copy</button>
+                </div>
+
+                <div class="variation-item glass-panel">
+                  <div class="variation-meta">
+                    <span class="variation-label">Impact & Growth:</span>
+                    <p id="output-headline-variant-2" class="variation-text" contenteditable="true" spellcheck="false"></p>
+                  </div>
+                  <button type="button" class="btn btn-mini btn-copy" data-target="output-headline-variant-2">Copy</button>
+                </div>
+              </div>
+            </article>
+
+            <!-- 2. About Section Card -->
+            <article class="card result-card glass-card" id="card-about">
+              <div class="result-card-header">
+                <div class="result-title-group">
+                  <span class="badge badge-accent">Section 2</span>
+                  <h3>About Section (Summary)</h3>
+                </div>
+                <div class="card-header-actions">
+                  <span class="editable-indicator" title="Click directly in the box to edit">✏️ Editable</span>
+                  <span class="word-counter" id="about-word-count">~1 min read</span>
+                  <button type="button" class="btn btn-copy" data-target="output-about" title="Copy About section to clipboard">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span>Copy About</span>
+                  </button>
+                </div>
+              </div>
+              <p class="card-instruction">Paste this into LinkedIn's About section. Directly editable with real-time word counter.</p>
+              <div class="output-box output-text-block" id="output-about" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="true"></div>
+            </article>
+
+            <!-- 3. Experience Descriptions Card -->
+            <article class="card result-card glass-card" id="card-experience">
+              <div class="result-card-header">
+                <div class="result-title-group">
+                  <span class="badge badge-accent">Section 3</span>
+                  <h3>Experience Descriptions</h3>
+                </div>
+                <div class="card-header-actions">
+                  <span class="editable-indicator" title="Click directly in the box to edit">✏️ Editable</span>
+                  <button type="button" class="btn btn-copy" data-target="output-experience" title="Copy Experience descriptions to clipboard">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span>Copy Experience</span>
+                  </button>
+                </div>
+              </div>
+              <p class="card-instruction">Action-oriented bullet points tailored for the LinkedIn Experience entries. Directly editable.</p>
+              <div class="output-box output-text-block" id="output-experience" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="true"></div>
+            </article>
+
+            <!-- 4. Education & Academic Background Card (V3) -->
+            <article class="card result-card glass-card" id="card-education">
+              <div class="result-card-header">
+                <div class="result-title-group">
+                  <span class="badge badge-accent">Section 4</span>
+                  <h3>Education & Academic Credentials</h3>
+                </div>
+                <div class="card-header-actions">
+                  <span class="editable-indicator" title="Click directly in the box to edit">✏️ Editable</span>
+                  <button type="button" class="btn btn-copy" data-target="output-education" title="Copy Education section to clipboard">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span>Copy Education</span>
+                  </button>
+                </div>
+              </div>
+              <p class="card-instruction">Structured entries for LinkedIn's Education section highlighting institution, degree, and distinctions.</p>
+              <div class="output-box output-text-block" id="output-education" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="true"></div>
+            </article>
+
+            <!-- 5. Skills & Endorsement Keywords Card (V3) -->
+            <article class="card result-card glass-card" id="card-skills">
+              <div class="result-card-header">
+                <div class="result-title-group">
+                  <span class="badge badge-accent">Section 5</span>
+                  <h3>Skills & Endorsement Keywords</h3>
+                </div>
+                <div class="card-header-actions">
+                  <span class="editable-indicator" title="Click directly in the box to edit">✏️ Editable</span>
+                  <button type="button" class="btn btn-copy" data-target="output-skills" title="Copy Skills section to clipboard">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span>Copy Skills</span>
+                  </button>
+                </div>
+              </div>
+              <p class="card-instruction">Curated for LinkedIn's Skills section with prioritized endorsement keywords for top recruiter ranking.</p>
+              <div class="output-box output-text-block" id="output-skills" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="true"></div>
+            </article>
+
+            <!-- 6. Project Highlights Card -->
+            <article class="card result-card glass-card" id="card-projects">
+              <div class="result-card-header">
+                <div class="result-title-group">
+                  <span class="badge badge-accent">Section 6</span>
+                  <h3>Project Highlights</h3>
+                </div>
+                <div class="card-header-actions">
+                  <span class="editable-indicator" title="Click directly in the box to edit">✏️ Editable</span>
+                  <button type="button" class="btn btn-copy" data-target="output-projects" title="Copy Project descriptions to clipboard">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span>Copy Projects</span>
+                  </button>
+                </div>
+              </div>
+              <p class="card-instruction">Formatted for LinkedIn's Featured or Project showcases. Directly editable.</p>
+              <div class="output-box output-text-block" id="output-projects" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="true"></div>
+            </article>
+
+            <!-- Section 5: LinkedIn Optimization Checklist / Pro Tips -->
+            <div class="card tips-card glass-card">
+              <div class="tips-header">
+                <span class="tips-icon">💡</span>
+                <h4>Pro Tips for 10x More Profile Views:</h4>
+              </div>
+              <div class="tips-grid">
+                <div class="tip-item">
+                  <strong>📸 Professional Headshot:</strong> Clean lighting and friendly eye-contact increases clicks by up to 21x.
+                </div>
+                <div class="tip-item">
+                  <strong>🎨 Custom Header Banner:</strong> Add a banner reflecting your tech stack or domain expertise.
+                </div>
+                <div class="tip-item">
+                  <strong>⭐ Creator Mode:</strong> Add 5 core hashtag topics to make your profile a magnet for recruiters.
+                </div>
+                <div class="tip-item">
+                  <strong>🤝 Activity Feed:</strong> Comment thoughtfully on 3 industry posts per week to boost reach.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- ========================================================================
+         VIEW 2: DASHBOARD (Overview & SaaS Analytics)
+         ======================================================================== -->
+    <section id="view-dashboard" class="view-panel">
+      <div class="view-header-banner">
+        <div>
+          <h1 class="view-heading">SaaS Executive <span class="gradient-text">Dashboard</span></h1>
+          <p class="view-subheading">Track your AI generation metrics, optimize profile visibility, and inspect career growth velocity.</p>
+        </div>
+      </div>
+
+      <!-- Dashboard Metric KPIs Grid -->
+      <div class="kpi-grid">
+        <div class="kpi-card glass-card">
+          <div class="kpi-icon-wrap icon-blue">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div class="kpi-content">
+            <span class="kpi-label">Profiles Created</span>
+            <div class="kpi-value" id="kpi-total-profiles">0</div>
+            <span class="kpi-trend positive">↑ Live Session Counter</span>
+          </div>
+        </div>
+
+        <div class="kpi-card glass-card">
+          <div class="kpi-icon-wrap icon-purple">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <div class="kpi-content">
+            <span class="kpi-label">AI Optimization Score</span>
+            <div class="kpi-value">98.5%</div>
+            <span class="kpi-trend positive">Recruiter Search Grade A+</span>
+          </div>
+        </div>
+
+        <div class="kpi-card glass-card">
+          <div class="kpi-icon-wrap icon-cyan">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <div class="kpi-content">
+            <span class="kpi-label">Avg. Generation Latency</span>
+            <div class="kpi-value" id="kpi-avg-time">~1.2s</div>
+            <span class="kpi-trend neutral">Turbo Hybrid Pipeline</span>
+          </div>
+        </div>
+
+        <div class="kpi-card glass-card">
+          <div class="kpi-icon-wrap icon-emerald">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <div class="kpi-content">
+            <span class="kpi-label">AI Model Status</span>
+            <div class="kpi-value" id="kpi-ai-status">Online</div>
+            <span class="kpi-trend positive">Zero Fallback Drop</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Action Launch Banner -->
+      <div class="dashboard-launch-banner glass-card">
+        <div class="launch-banner-text">
+          <h2>Ready to Supercharge Your Next Career Move?</h2>
+          <p>Generate targeted headlines and summaries for any role or industry in less than 30 seconds.</p>
+        </div>
+        <button type="button" class="btn btn-primary btn-glow" id="dashboard-launch-btn">
+          <span>Open Profile Generator</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <!-- LinkedIn Strategy Grid -->
+      <div class="dashboard-insights-grid">
+        <div class="card glass-card">
+          <div class="card-header">
+            <h3>📈 2026 LinkedIn Algorithm Checklist</h3>
+          </div>
+          <ul class="checklist-items">
+            <li>
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Strategic Keywords in Headline</strong>
+                <p>Ensure your top 3 tech tools appear in the first 80 characters of your headline.</p>
+              </div>
+            </li>
+            <li>
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Hook Readers Within 3 Lines</strong>
+                <p>The "see more" cutoff on LinkedIn is 3 lines. Put your highest impact claim first.</p>
+              </div>
+            </li>
+            <li>
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Metric-Driven Experience</strong>
+                <p>Quantify results: include percentages, user counts, or speedups in bullet points.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card glass-card">
+          <div class="card-header">
+            <h3>🚀 High-Growth Roles in Tech</h3>
+          </div>
+          <div class="role-tags-cloud">
+            <span class="role-pill">Full Stack Engineer</span>
+            <span class="role-pill">AI/ML Engineer</span>
+            <span class="role-pill">Cloud Solutions Architect</span>
+            <span class="role-pill">Product Designer</span>
+            <span class="role-pill">DevOps & SRE</span>
+            <span class="role-pill">Data Engineer</span>
+            <span class="role-pill">Security Specialist</span>
+            <span class="role-pill">Engineering Manager</span>
+          </div>
+          <p class="role-note">Select any role and auto-generate specialized profiles with tailored keywords.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         VIEW 3: MY PROFILES (Saved Profiles Gallery)
+         ======================================================================== -->
+    <section id="view-profiles" class="view-panel">
+      <div class="view-header-banner">
+        <div>
+          <h1 class="view-heading">My Saved <span class="gradient-text">Profiles</span></h1>
+          <p class="view-subheading">View, restore, or export previously generated LinkedIn profiles saved in your browser.</p>
+        </div>
+        <div class="profiles-header-actions">
+          <button type="button" class="btn btn-outline" id="btn-clear-saved-profiles">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            </svg>
+            <span>Clear All Saved</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Saved Profiles Cards Grid -->
+      <div id="saved-profiles-grid" class="saved-profiles-grid">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+
+      <!-- Empty State for My Profiles -->
+      <div id="profiles-empty-state" class="empty-state glass-card">
+        <div class="empty-state-illustration">
+          <svg viewBox="0 0 24 24" width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <h3>No Saved Profiles Yet</h3>
+        <p>When you generate profiles in the Studio, they are automatically snapshotted here so you never lose your work.</p>
+        <button type="button" class="btn btn-primary" onclick="document.getElementById('nav-generator').click();">
+          Go to Generator
+        </button>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         VIEW 4: SETTINGS (Theme, Engine, and Preferences)
+         ======================================================================== -->
+    <section id="view-settings" class="view-panel">
+      <div class="view-header-banner">
+        <div>
+          <h1 class="view-heading">System <span class="gradient-text">Settings</span></h1>
+          <p class="view-subheading">Customize your UI experience, manage API connections, and adjust default generation options.</p>
+        </div>
+      </div>
+
+      <div class="settings-grid">
+        <!-- Theme Configuration Card -->
+        <div class="card glass-card">
+          <div class="card-header">
+            <h3>🎨 Interface Appearance</h3>
+            <p class="section-desc">Toggle between high-contrast Pure Black mode and crisp Light Studio theme.</p>
+          </div>
+          <div class="theme-options-row">
+            <button type="button" class="theme-select-card" id="settings-theme-dark">
+              <div class="theme-preview preview-dark"></div>
+              <span>Pure Black (Default)</span>
+            </button>
+            <button type="button" class="theme-select-card" id="settings-theme-light">
+              <div class="theme-preview preview-light"></div>
+              <span>Light Studio</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- AI Engine Guide Card -->
+        <div class="card glass-card">
+          <div class="card-header">
+            <h3>✨ AI Inference Configuration</h3>
+            <p class="section-desc">Connect Google Gemini (Free tier) or OpenAI to unlock deep personalized narratives.</p>
+          </div>
+          <div class="settings-info-box glass-panel">
+            <h4>How to activate Google Gemini (Free):</h4>
+            <ol class="settings-steps-list">
+              <li>Open your project directory and open the <code>.env</code> file.</li>
+              <li>Get a free key from <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">Google AI Studio</a>.</li>
+              <li>Paste it as: <code>GEMINI_API_KEY=your_key_here</code></li>
+              <li>Restart your server with: <code>node server.js</code></li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Storage & Privacy Card -->
+        <div class="card glass-card">
+          <div class="card-header">
+            <h3>🔒 Privacy & Security First</h3>
+            <p class="section-desc">Your private API keys stay 100% on your machine in <code>.env</code> and are never leaked to client browsers.</p>
+          </div>
+          <p class="privacy-note">All candidate inputs and generated outputs are stored locally in your browser session. No tracking scripts or invasive telemetry.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         FOOTER
+         ======================================================================== -->
+    <footer class="app-footer">
+      <div class="footer-container">
+        <p>ProProfile AI SaaS Studio &bull; Built with pure HTML, CSS, Vanilla JS & Node.js &bull; Pure Black & Neon Purple Theme &bull; Privacy First</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ==========================================================================
+       TOAST NOTIFICATION (Preserved ID)
+       ========================================================================== -->
+  <div id="toast" class="toast glass-panel" role="status" aria-live="polite">
+    <span class="toast-indicator-icon">✨</span>
+    <span id="toast-message">Notification message</span>
+  </div>
+
+  <!-- JavaScript logic -->
+  <script src="script.js"></script>
+</body>
+</html>

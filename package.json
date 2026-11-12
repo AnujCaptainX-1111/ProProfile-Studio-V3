@@ -1,0 +1,19 @@
+{
+  "name": "linkedin-profile-generator",
+  "version": "2.0.0",
+  "description": "Professional LinkedIn Profile Generator with AI Support and Offline Template Fallback",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "linkedin",
+    "profile-generator",
+    "gemini",
+    "openai",
+    "ai"
+  ],
+  "author": "",
+  "license": "MIT"
+}
